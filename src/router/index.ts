@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
 import { RouteRecordRaw } from "vue-router";
-import NavBar from "@/components/NavBar.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -8,23 +7,20 @@ const routes: Array<RouteRecordRaw> = [
     redirect: "/home",
   },
   {
-    path: "/",
-    component: NavBar,
-    children: [
-      {
-        path: "",
-        redirect: "/home",
-      },
-      {
-        path: "home",
-        component: () => import("../views/HomePage.vue"),
-      },
-      {
-        path: "myLink",
-        component: () => import("../views/MyLink.vue"),
-      },
-    ],
+    path: "/home",
+    name: "home",
+    component: () => import("@/views/HomePage.vue"),
   },
+  {
+    path: "/my_link",
+    name: "mylink",
+    component: () => import("@/views/MyLink.vue"),
+  },
+  {
+    path: "/detail/:link_id/:cut_url",
+    name: "detail",
+    component: () => import("@/views/DetailLink.vue"),
+  }
 ];
 
 const router = createRouter({
